@@ -1,0 +1,45 @@
+<template>
+    <template if:true={trades.data}>
+        <div class="slds-var-m-around_medium slds-border_left slds-border_right">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <template for:each={columns} for:item="column">
+                            <th key={column.name} class="" scope="col">
+                                <div class="slds-truncate" title={column.name}>{column.name}</div>
+                            </th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={trades.data} for:item="trade">
+                        <tr key={trade.id} class="slds-hint-parent">
+                            <td>
+                                <div class="slds-truncate" title={trade.sellCurrency}>{trade.sellCurrency}</div>
+                            </td>
+                            <td>
+                                <div class="slds-truncate" title={trade.sellAmount}>{trade.sellAmount}</div>
+                            </td>
+                            <td>
+                                <div class="slds-truncate" title={trade.buyCurrency}>{trade.buyCurrency}</div>
+                            </td>
+                            <td>
+                                <div class="slds-truncate" title={trade.buyAmount}>{trade.buyAmount}</div>
+                            </td>
+                            <td>
+                                <div class="slds-truncate" title={trade.rate}>{trade.rate}</div>
+                            </td>
+                            <td>
+                                <div class="slds-truncate" title={trade.dateBooked}>{trade.dateBooked}</div>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+    </template>
+    <template if:true={trades.error}>
+        <h2>{trades.error.body.message}</h2>
+    </template>
+
+</template>

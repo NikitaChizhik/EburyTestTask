@@ -1,0 +1,21 @@
+<template>
+    <div class="slds-grid">
+        <div class="slds-col slds-size_1-of-6"></div>
+
+        <div class="slds-col slds-size_2-of-3">
+            <div>
+                <lightning-card variant="narrow" title={labels.bookedTradesTitle} icon-name="standard:metrics">
+                    <lightning-button label={labels.newTradeButton} title={labels.newTradeButton}
+                        icon-name="action:update" icon-position="right" variant="border-filled" slot="actions"
+                        onclick={newTradeBtnClickHandler}></lightning-button>
+                    <c-trade-table ></c-trade-table>
+                </lightning-card>
+            </div>
+
+            <c-new-trade-modal-form ontradecreated={refreshTrades} onformerror={showErrorToast}>
+            </c-new-trade-modal-form>
+        </div>
+
+        <div class="slds-col slds-size_1-of-6"></div>
+    </div>
+</template>

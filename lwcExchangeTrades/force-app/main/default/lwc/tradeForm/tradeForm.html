@@ -1,0 +1,42 @@
+<template>
+    <div class="slds-grid slds-grid_align-spread">
+        <div class="slds-col slds-size_1-of-3">
+            <lightning-combobox name="sell-currency" label={labels.sellCurrencyCombobox} value={sellCurrencyType}
+                placeholder={labels.currencyPlaceholder} options={options} onchange={comboboxesChangeHandler}>
+            </lightning-combobox>
+
+            <div class="slds-var-m-top_xx-large">
+                <lightning-input data-id="sell-amount" type="number" variant="standard" label={labels.sellAmountInput}
+                    value={sellAmountValue} step=".01" min="0" placeholder={labels.sellAmountPlaceholder}
+                    onchange={sellAmountChangeHandler}>
+                </lightning-input>
+            </div>
+        </div>
+
+        <div class="slds-col slds-var-m-horizontal_small">
+            <template if:true={isRateLoading}>
+                <div class="slds-spinner_container slds-is-relative slds-var-m-top_x-large">
+                    <lightning-spinner alternative-text="Loading" size="small" variant="brand">
+                    </lightning-spinner>
+                </div>
+            </template>
+            <template if:false={isRateLoading}>
+                <lightning-input data-id="rate" type="number" variant="standard" label={labels.rateInput}
+                    placeholder={labels.ratePlaceholder} disabled value={rateValue} step=".0001">
+                </lightning-input>
+            </template>
+        </div>
+
+        <div class="slds-col slds-size_1-of-3">
+            <lightning-combobox name="buy-currency" label={labels.buyCurrencyCombobox} value={buyCurrencyType}
+                placeholder={labels.currencyPlaceholder} options={options} onchange={comboboxesChangeHandler} class="">
+            </lightning-combobox>
+
+            <div class="slds-var-m-top_xx-large">
+                <lightning-input data-id="buy-amount" type="number" variant="standard" label={labels.buyAmountInput}
+                    disabled value={buyAmountValue} step=".01">
+                </lightning-input>
+            </div>
+        </div>
+    </div>
+</template>
